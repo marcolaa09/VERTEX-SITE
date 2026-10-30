@@ -44,19 +44,21 @@ onScroll();
 const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
 
-hamburger.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  hamburger.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', open);
-});
+if (hamburger && nav) {
+  hamburger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
 
-nav.addEventListener('click', (e) => {
-  if (e.target.closest('a')) {
-    nav.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-});
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) {
+      nav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
 
 /* ---------- Project filters ---------- */
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -83,6 +85,7 @@ faqItems.forEach((item) => {
 
 /* ---------- Multi-step form ---------- */
 const form = document.getElementById('estimate-form');
+if (form) {
 const steps = [...form.querySelectorAll('.form-step')];
 const stepLabels = [...form.querySelectorAll('.form-step-label')];
 const progressFill = document.getElementById('progress-fill');
@@ -168,6 +171,7 @@ form.addEventListener('submit', async (e) => {
   successBox.classList.add('show');
   track('lead_submit', { service: lead.service, lang: lead.lang });
 });
+}
 
 /* ---------- i18n (EN default in HTML, ES via dictionary) ---------- */
 const I18N_ES = {
@@ -188,6 +192,8 @@ const I18N_ES = {
   'hero.trust1': 'Licencia y Seguro',
   'hero.trust2': 'Presupuestos claros y rápidos',
   'hero.trust3': 'Un solo equipo, de principio a fin',
+  'lp.sub': 'Presupuesto escrito gratis, sin compromiso. Respuesta en 24 horas — cocinas, baños, sótanos y renovación integral del hogar.',
+  'lp.photos': 'Proyectos reales de nuestros equipos',
   'hero.cardBadge1': 'Estimado Gratis',
   'hero.cardBadge2': 'Respuesta en 24 horas',
   'trust.1t': 'Licencia y Seguro',
