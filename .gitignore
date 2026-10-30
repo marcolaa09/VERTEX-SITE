@@ -5,3 +5,6 @@ desktop.ini
 
 # Editor
 .vscode/
+
+# Deploy package
+*.zip
