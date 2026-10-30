@@ -992,7 +992,10 @@ a.topbar-item:hover { color: #fff; }
 }
 .lp-photos img:hover { transform: scale(1.03); }
 
-.lp-form { padding: 1.8rem; }
+.lp-form { padding: 1.8rem; max-width: 560px; width: 100%; }
+@media (max-width: 1020px) {
+  .lp-form { margin: 0 auto; }
+}
 
 .footer-slim { padding: 0; }
 .footer-slim .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); }

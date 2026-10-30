@@ -31,7 +31,7 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href') || '';
   if (href.startsWith('tel:')) track('call_click', { location: link.closest('section')?.id || 'other' });
   else if (href.startsWith('sms:')) track('sms_click', { location: link.closest('section')?.id || 'other' });
-  else if (href === '#estimate') track('estimate_cta_click', { location: link.closest('section')?.id || 'nav' });
+  else if (href === '#estimate' || href === '#estimate-form') track('estimate_cta_click', { location: link.closest('section')?.id || 'nav' });
 });
 
 /* ---------- Sticky header ---------- */
