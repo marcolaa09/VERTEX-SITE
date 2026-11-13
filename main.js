@@ -192,8 +192,6 @@ const I18N_ES = {
   'hero.trust1': 'Licencia y Seguro',
   'hero.trust2': 'Presupuestos claros y rápidos',
   'hero.trust3': 'Un solo equipo, de principio a fin',
-  'lp.sub': 'Presupuesto escrito gratis, sin compromiso. Respuesta en 24 horas — cocinas, baños, sótanos y renovación integral del hogar.',
-  'lp.photos': 'Proyectos reales de nuestros equipos',
   'hero.cardBadge1': 'Estimado Gratis',
   'hero.cardBadge2': 'Respuesta en 24 horas',
   'trust.1t': 'Licencia y Seguro',
