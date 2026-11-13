@@ -4,205 +4,127 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Interior Painting | Vertex Home Remodeling</title>
-  <meta name="description" content="Fast, clean & affordable interior painting. Licensed & insured crews. Get your free estimate in 30 seconds." />
+  <title>Free Painting Estimate | Vertex Home Remodeling</title>
   <link rel="icon" type="image/png" href="../assets/logo-blue.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel: carregado pelo quiz.js (ID 5075501212721113).
+       Eventos: PageView, Lead (quiz completo), Contact (call/sms). -->
+
   <style>
 /* ============================================================
-   Vertex — Painting Quiz Landing Page (/lp/)
-   Standalone: não depende do styles.css do site principal
+   Vertex — Painting Quiz LP (/lp/) — "instant form" style
+   Uma tela, uma ação: o quiz. Zero distração.
    ============================================================ */
-
 :root {
   --blue: #3B5BDB;
   --blue-dark: #2F49B8;
   --blue-light: #5B77E8;
   --navy: #0B1230;
-  --navy-2: #111A44;
   --ink: #1B2138;
   --gray: #5C6478;
   --line: #E4E8F2;
-  --bg: #FFFFFF;
-  --bg-gray: #F5F7FC;
+  --bg: #F5F7FC;
   --radius: 14px;
   --radius-lg: 22px;
-  --shadow: 0 10px 30px rgba(11, 18, 48, .08);
-  --shadow-lg: 0 24px 60px rgba(11, 18, 48, .16);
+  --shadow-lg: 0 24px 60px rgba(11, 18, 48, .12);
   --font-head: 'Sora', system-ui, sans-serif;
   --font-body: 'Manrope', system-ui, sans-serif;
-  --header-h: 68px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--bg);
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -0.02em; }
-.container { width: min(1180px, 92%); margin: 0 auto; }
 
-/* ---------- Buttons ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 1rem;
-  padding: .85rem 1.6rem;
-  border-radius: 999px;
-  border: 0;
-  cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-}
-.btn:active { transform: scale(.97); }
-.btn svg { width: 1.1em; height: 1.1em; flex: none; }
-.btn-primary {
-  background: var(--blue);
-  color: #fff;
-  box-shadow: 0 10px 24px rgba(59, 91, 219, .35);
-}
-.btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
-.btn-primary:disabled { opacity: .6; cursor: wait; transform: none; }
-.btn-light { background: #fff; color: var(--navy); }
-.btn-light:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.25); }
-.btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.45); }
-.btn-ghost:hover { background: rgba(255,255,255,.1); }
-
-/* ---------- Header ---------- */
-.lp-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(12px);
+/* ---------- Top bar ---------- */
+.topbar {
+  background: #fff;
   border-bottom: 1px solid var(--line);
+  padding: .7rem 5%;
+  display: flex; align-items: center; justify-content: space-between;
 }
-.header-inner {
-  height: var(--header-h);
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-}
-.logo img { height: 44px; width: auto; }
-.header-actions { display: flex; align-items: center; gap: .9rem; }
+.topbar img { height: 36px; width: auto; }
+.topbar-actions { display: flex; align-items: center; gap: .7rem; }
 
 .lang-switch {
   display: inline-flex;
-  background: var(--bg-gray);
+  background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 3px;
 }
 .lang-btn {
   border: 0; background: transparent; cursor: pointer;
-  font-family: var(--font-body); font-weight: 700; font-size: .8rem;
-  color: var(--gray); padding: .3rem .7rem; border-radius: 999px;
-  transition: background .2s, color .2s;
+  font-family: var(--font-body); font-weight: 700; font-size: .78rem;
+  color: var(--gray); padding: .28rem .65rem; border-radius: 999px;
 }
 .lang-btn.active { background: var(--navy); color: #fff; }
 
-.btn-call {
-  background: var(--navy); color: #fff;
-  padding: .65rem 1.3rem; font-size: .95rem;
-}
-.btn-call:hover { background: var(--navy-2); }
-
-/* ---------- Hero ---------- */
-.lp-hero {
-  background:
-    radial-gradient(1200px 500px at 80% -10%, rgba(91,119,232,.25), transparent 60%),
-    linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, #1A2456 100%);
-  color: #fff;
-  padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem);
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-.eyebrow {
-  display: inline-block;
-  font-weight: 700; font-size: .8rem;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: #9FB2FF;
-  background: rgba(91,119,232,.18);
-  border: 1px solid rgba(91,119,232,.35);
-  padding: .4rem .9rem; border-radius: 999px;
-  margin-bottom: 1.1rem;
-}
-.hero-copy h1 {
-  font-size: clamp(2rem, 4.5vw, 3.1rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-.hero-sub { font-size: clamp(1.02rem, 1.6vw, 1.2rem); color: #C9D2F2; margin-bottom: 1.4rem; }
-.hero-points { display: grid; gap: .55rem; }
-.hero-points li {
-  position: relative;
-  padding-left: 1.7rem;
-  font-weight: 600;
-  color: #E3E8FA;
-}
-.hero-points li::before {
-  content: "";
-  position: absolute; left: 0; top: .32em;
-  width: 1.1em; height: 1.1em;
+.phone-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
   border-radius: 50%;
-  background: var(--blue-light);
-  -webkit-mask: none;
+  background: var(--navy); color: #fff;
 }
-.hero-points li::after {
-  content: "";
-  position: absolute; left: .32em; top: .62em;
-  width: .42em; height: .22em;
-  border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  transform: rotate(-45deg);
+.phone-btn svg { width: 17px; height: 17px; }
+
+/* ---------- Center column ---------- */
+.wrap {
+  flex: 1;
+  width: min(560px, 100%);
+  margin: 0 auto;
+  padding: clamp(1.2rem, 4vh, 2.5rem) 5% 2rem;
+  display: flex;
+  flex-direction: column;
 }
+.intro { text-align: center; margin-bottom: 1.2rem; }
+.intro h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.45rem, 5.5vw, 1.9rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.intro p { color: var(--gray); font-size: .98rem; margin-top: .25rem; }
 
 /* ---------- Quiz card ---------- */
 .quiz-card {
   background: #fff;
-  color: var(--ink);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: 1.5rem 1.5rem 1.7rem;
-  max-width: 560px;
-  width: 100%;
-  margin: 0 auto;
+  padding: 1.4rem 1.3rem 1.5rem;
 }
 .quiz-head {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: .5rem;
-  min-height: 1.6rem;
+  min-height: 1.6rem; margin-bottom: .5rem;
 }
 .quiz-back {
   border: 0; background: transparent; cursor: pointer;
   font-size: 1.15rem; color: var(--gray); padding: .15rem .4rem;
   border-radius: 8px;
 }
-.quiz-back:hover { background: var(--bg-gray); color: var(--ink); }
-.quiz-step-label { font-size: .8rem; font-weight: 700; color: var(--gray); letter-spacing: .04em; text-transform: uppercase; }
+.quiz-back:hover { background: var(--bg); color: var(--ink); }
+.quiz-step-label { font-size: .78rem; font-weight: 700; color: var(--gray); letter-spacing: .04em; text-transform: uppercase; }
 
 .quiz-progress {
   height: 6px; border-radius: 999px;
-  background: var(--line);
-  overflow: hidden;
+  background: var(--line); overflow: hidden;
   margin-bottom: 1.3rem;
 }
 .quiz-progress-fill {
-  display: block; height: 100%;
-  width: 0;
+  display: block; height: 100%; width: 0;
   background: linear-gradient(90deg, var(--blue), var(--blue-light));
   border-radius: 999px;
   transition: width .35s ease;
@@ -216,25 +138,24 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -
 }
 .quiz-q {
   font-family: var(--font-head);
-  font-size: 1.22rem; font-weight: 800;
+  font-size: 1.18rem; font-weight: 800;
   margin-bottom: 1rem;
 }
-.quiz-hint { font-size: .9rem; color: var(--gray); margin: -.6rem 0 .9rem; }
+.quiz-hint { font-size: .88rem; color: var(--gray); margin: -.6rem 0 .9rem; }
 
 .quiz-options { display: grid; gap: .6rem; }
 .option-card {
   display: flex; flex-direction: column; align-items: flex-start; gap: .1rem;
-  width: 100%;
-  text-align: left;
+  width: 100%; text-align: left;
   font-family: var(--font-body);
-  background: var(--bg-gray);
+  background: var(--bg);
   border: 1.5px solid var(--line);
   border-radius: var(--radius);
   padding: .85rem 1.1rem;
   cursor: pointer;
   transition: border-color .15s ease, background .15s ease, transform .15s ease;
 }
-.option-card:hover { border-color: var(--blue); background: #EEF2FF; transform: translateY(-1px); }
+.option-card:hover { border-color: var(--blue); background: #EEF2FF; }
 .option-card:active { transform: scale(.99); }
 .option-card.picked { border-color: var(--blue); background: #E8EDFF; }
 .option-urgent { border-color: #F2C9C9; }
@@ -245,11 +166,11 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -
 .quiz-input {
   width: 100%;
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 16px;
   padding: .9rem 1.1rem;
   border: 1.5px solid var(--line);
   border-radius: var(--radius);
-  background: var(--bg-gray);
+  background: var(--bg);
   margin-bottom: .7rem;
   outline: none;
   transition: border-color .15s, background .15s, box-shadow .15s;
@@ -259,343 +180,169 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -
   background: #fff;
   box-shadow: 0 0 0 3px rgba(59,91,219,.14);
 }
-#quizZip { font-size: 1.3rem; font-weight: 800; letter-spacing: .08em; text-align: center; }
+#quizZip { font-size: 1.25rem; font-weight: 800; letter-spacing: .08em; text-align: center; }
 
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--font-body); font-weight: 700; font-size: 1.02rem;
+  padding: .95rem 1.6rem;
+  border-radius: 999px; border: 0; cursor: pointer;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 10px 24px rgba(59, 91, 219, .35);
+}
+.btn-primary:hover { background: var(--blue-dark); }
+.btn-primary:disabled { opacity: .6; cursor: wait; }
+.btn-ghost { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); }
+.btn-ghost:hover { background: #EEF2FF; }
+
+.quiz-next, .quiz-submit { width: 100%; }
+.quiz-micro { text-align: center; font-size: .8rem; color: var(--gray); margin-top: .7rem; }
 .quiz-error { color: #C22F2F; font-size: .88rem; font-weight: 600; margin: -.2rem 0 .6rem; }
-.quiz-next, .quiz-submit { width: 100%; font-size: 1.05rem; padding: 1rem 1.6rem; }
-.quiz-micro { text-align: center; font-size: .82rem; color: var(--gray); margin-top: .7rem; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* ---------- Success ---------- */
-.quiz-success { text-align: center; padding: 1rem .5rem; animation: quizIn .3s ease; }
+.quiz-success { text-align: center; padding: .8rem .3rem; animation: quizIn .3s ease; }
 .success-check {
-  width: 64px; height: 64px;
-  margin: 0 auto 1rem;
+  width: 62px; height: 62px; margin: 0 auto .9rem;
   border-radius: 50%;
   background: #E6F7ED; color: #1B9E5A;
   display: flex; align-items: center; justify-content: center;
 }
-.success-check svg { width: 30px; height: 30px; }
-.quiz-success h3 { font-size: 1.4rem; margin-bottom: .5rem; }
-.quiz-success p { color: var(--gray); margin-bottom: 1.2rem; }
+.success-check svg { width: 28px; height: 28px; }
+.quiz-success h3 { font-family: var(--font-head); font-size: 1.35rem; margin-bottom: .45rem; }
+.quiz-success p { color: var(--gray); margin-bottom: 1.1rem; }
 .success-actions { display: grid; gap: .6rem; }
-.success-actions .btn-ghost { color: var(--blue); border-color: var(--blue); }
-.success-actions .btn-ghost:hover { background: #EEF2FF; }
 
-/* ---------- Trust bar ---------- */
-.trust { background: var(--bg-gray); border-bottom: 1px solid var(--line); }
-.trust-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1rem; padding: 1.6rem 0;
-}
-.trust-item { display: flex; flex-direction: column; gap: .1rem; }
-.trust-item strong { font-family: var(--font-head); font-size: .98rem; }
-.trust-item span { font-size: .85rem; color: var(--gray); }
-
-/* ---------- Sections ---------- */
-.section { padding: clamp(2.6rem, 6vw, 4rem) 0; }
-.section-title { font-size: clamp(1.5rem, 3vw, 2.1rem); text-align: center; margin-bottom: .4rem; }
-.section-sub { text-align: center; color: var(--gray); margin-bottom: 1.8rem; }
-
-.lp-photos {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
-}
-.lp-photos img {
-  width: 100%; height: 260px;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  filter: saturate(1.06) contrast(1.03);
-  transition: transform .3s ease;
-}
-@supports (aspect-ratio: 1/1) {
-  .lp-photos img { height: auto; aspect-ratio: 4/5; }
-}
-.lp-photos img:hover { transform: scale(1.03); }
-
-.how { background: var(--bg-gray); }
-.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.how-item {
-  background: #fff; border-radius: var(--radius-lg);
-  padding: 1.6rem 1.4rem; box-shadow: var(--shadow);
-}
-.how-n {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 2.2rem; height: 2.2rem;
-  border-radius: 50%;
-  background: var(--blue); color: #fff;
-  font-family: var(--font-head); font-weight: 800;
-  margin-bottom: .8rem;
-}
-.how-item h3 { font-size: 1.05rem; margin-bottom: .3rem; }
-.how-item p { font-size: .92rem; color: var(--gray); }
-
-.promise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.promise-item {
-  border: 1.5px solid var(--line); border-radius: var(--radius-lg);
-  padding: 1.5rem 1.4rem;
-}
-.promise-item h3 { font-size: 1.05rem; margin-bottom: .3rem; color: var(--navy); }
-.promise-item p { font-size: .92rem; color: var(--gray); }
-
-/* ---------- Final CTA ---------- */
-.final-cta {
-  background: linear-gradient(160deg, var(--navy), #1A2456);
-  color: #fff;
+/* ---------- Trust line & footer ---------- */
+.trust-line {
   text-align: center;
-  padding: clamp(2.8rem, 7vw, 4.5rem) 0;
+  font-size: .82rem; font-weight: 600; color: var(--gray);
+  margin-top: 1.1rem;
 }
-.final-cta h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: .5rem; }
-.final-cta p { color: #C9D2F2; margin-bottom: 1.6rem; }
+.foot {
+  text-align: center;
+  font-size: .78rem; color: var(--gray);
+  padding: .8rem 5% 1.4rem;
+}
+.foot a { font-weight: 700; color: var(--ink); }
 
-/* ---------- Footer ---------- */
-.footer-slim { background: var(--navy); color: #B9C2E8; padding: 2rem 0 calc(2rem + 76px); text-align: center; }
-.footer-logo { height: 40px; margin: 0 auto .8rem; }
-.footer-slim a { font-weight: 700; color: #fff; }
-.footer-fine { font-size: .82rem; margin-top: .5rem; color: #8B96C4; }
-
-/* ---------- Mobile sticky bar ---------- */
-.mobile-bar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-  display: none;
-  gap: .6rem;
-  padding: .6rem .8rem calc(.6rem + env(safe-area-inset-bottom, 0px));
-  background: rgba(255,255,255,.95);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid var(--line);
-  box-shadow: 0 -6px 20px rgba(11,18,48,.08);
+@media (max-width: 480px) {
+  .quiz-card { padding: 1.2rem 1rem 1.3rem; border-radius: 18px; }
+  .intro h1 { font-size: 1.4rem; }
 }
-.mobile-bar-btn {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 1rem;
-  padding: .85rem;
-  border-radius: 999px;
-}
-.mobile-bar-btn.call { background: var(--navy); color: #fff; }
-.mobile-bar-btn.quote { background: var(--blue); color: #fff; }
-
-/* ---------- Responsive ---------- */
-@media (max-width: 1020px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .quiz-card { max-width: 560px; }
-  .trust-grid { grid-template-columns: repeat(2, 1fr); }
-  .how-grid, .promise-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
-}
-@media (max-width: 760px) {
-  .mobile-bar { display: flex; }
-  body { padding-bottom: 0; }
-  .footer-slim { padding-bottom: calc(2rem + 90px); }
-  .lp-photos { grid-template-columns: repeat(2, 1fr); }
-  .lp-photos img { height: 200px; }
-  @supports (aspect-ratio: 1/1) {
-    .lp-photos img { height: auto; }
-  }
-  .quiz-input { font-size: 16px; } /* evita zoom no iOS */
-  #quizZip { font-size: 1.2rem; }
-  .header-call-num { display: none; }
-  .btn-call { padding: .65rem .9rem; }
-  .hero-points { display: none; }
-  .lp-hero { padding-top: 1.6rem; }
-}
-@media (max-width: 420px) {
-  .logo img { height: 38px; }
-}
-@media (min-width: 761px) {
-  .footer-slim { padding-bottom: 2rem; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  html { scroll-behavior: auto; }
 }
   </style>
-
-  <!-- Meta Pixel: carregado pelo quiz.js (ID 5075501212721113).
-       Eventos: PageView, Lead (quiz completo), Contact (call/sms). -->
 </head>
 <body>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=5075501212721113&amp;ev=PageView&amp;noscript=1" alt="" /></noscript>
 
-  <!-- ===== Header slim (sem menu — única saída é converter) ===== -->
-  <header class="lp-header">
-    <div class="container header-inner">
-      <a href="#top" class="logo"><img src="../assets/logo-blue.png" alt="Vertex Home Remodeling" width="512" height="512" fetchpriority="high" /></a>
-      <div class="header-actions">
-        <div class="lang-switch" role="group" aria-label="Language">
-          <button type="button" class="lang-btn active" data-lang="en">EN</button>
-          <button type="button" class="lang-btn" data-lang="es">ES</button>
-        </div>
-        <a class="btn btn-call" href="tel:+12156785165" data-track="call_click">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="header-call-num">(215) 678-5165</span>
-        </a>
+  <header class="topbar">
+    <img src="../assets/logo-blue.png" alt="Vertex Home Remodeling" width="512" height="512" />
+    <div class="topbar-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="es">ES</button>
       </div>
+      <a class="phone-btn" href="tel:+12156785165" data-track="call_click" aria-label="Call us">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
     </div>
   </header>
 
-  <!-- ===== Hero: headline + quiz ===== -->
-  <section class="lp-hero" id="top">
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow" data-i18n="lp.eyebrow">Interior Painting — Free Quotes</p>
-        <h1 data-i18n="lp.title">Fast, clean &amp; affordable interior painting.</h1>
-        <p class="hero-sub" data-i18n="lp.sub">Get your free estimate in 30 seconds — free color consultation included.</p>
-        <ul class="hero-points">
-          <li data-i18n="lp.point1">Licensed &amp; insured painters</li>
-          <li data-i18n="lp.point2">We protect your floors &amp; furniture</li>
-          <li data-i18n="lp.point3">Holiday scheduling available</li>
-        </ul>
+  <main class="wrap">
+    <div class="intro">
+      <h1 data-i18n="in.title">Get a free painting estimate</h1>
+      <p data-i18n="in.sub">Answer a few quick questions — takes 30 seconds.</p>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-head">
+        <button type="button" class="quiz-back" id="quizBack" hidden aria-label="Back">←</button>
+        <span class="quiz-step-label" id="quizStepLabel">Step 1 of 5</span>
       </div>
+      <div class="quiz-progress"><span class="quiz-progress-fill" id="quizProgress"></span></div>
 
-      <!-- ===== Quiz ===== -->
-      <div class="quiz-card" id="quizCard">
-        <div class="quiz-head">
-          <button type="button" class="quiz-back" id="quizBack" hidden aria-label="Back">←</button>
-          <span class="quiz-step-label" id="quizStepLabel" data-i18n-tpl="quiz.step">Step {n} of {total}</span>
+      <form id="quizForm" novalidate>
+        <!-- Step 1 -->
+        <fieldset class="quiz-step active" data-step="1">
+          <legend class="quiz-q" data-i18n="q1.title">What do you need painted?</legend>
+          <div class="quiz-options" data-field="project">
+            <button type="button" class="option-card" data-value="Single room or accent wall"><span class="opt-label" data-i18n="q1.o1">Single room or accent wall</span><span class="opt-sub" data-i18n="q1.o1s">Refresh one space</span></button>
+            <button type="button" class="option-card" data-value="Multiple rooms"><span class="opt-label" data-i18n="q1.o2">Multiple rooms</span><span class="opt-sub" data-i18n="q1.o2s">Living, dining, bedrooms…</span></button>
+            <button type="button" class="option-card" data-value="Full home interior"><span class="opt-label" data-i18n="q1.o3">Full home interior</span><span class="opt-sub" data-i18n="q1.o3s">The whole place</span></button>
+            <button type="button" class="option-card" data-value="Cabinets, trim & doors"><span class="opt-label" data-i18n="q1.o4">Cabinets, trim &amp; doors</span><span class="opt-sub" data-i18n="q1.o4s">A factory-smooth finish</span></button>
+            <button type="button" class="option-card" data-value="Other / not sure"><span class="opt-label" data-i18n="q1.o5">Other / not sure</span><span class="opt-sub" data-i18n="q1.o5s">We'll figure it out together</span></button>
+          </div>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset class="quiz-step" data-step="2">
+          <legend class="quiz-q" data-i18n="q2.title">How soon do you want it done?</legend>
+          <div class="quiz-options" data-field="timeline">
+            <button type="button" class="option-card option-urgent" data-value="ASAP — before the holidays (URGENT)"><span class="opt-label" data-i18n="q2.o1">This week — before the holidays</span><span class="opt-sub" data-i18n="q2.o1s">Urgent scheduling</span></button>
+            <button type="button" class="option-card" data-value="Within 2-4 weeks"><span class="opt-label" data-i18n="q2.o2">Within 2–4 weeks</span><span class="opt-sub" data-i18n="q2.o2s">Soon, but flexible</span></button>
+            <button type="button" class="option-card" data-value="Just comparing quotes"><span class="opt-label" data-i18n="q2.o3">Just comparing quotes</span><span class="opt-sub" data-i18n="q2.o3s">No rush</span></button>
+          </div>
+        </fieldset>
+
+        <!-- Step 3 -->
+        <fieldset class="quiz-step" data-step="3">
+          <legend class="quiz-q" data-i18n="q3.title">Do you already have the paint?</legend>
+          <div class="quiz-options" data-field="paint">
+            <button type="button" class="option-card" data-value="Include paint & materials (full service)"><span class="opt-label" data-i18n="q3.o1">Include paint &amp; materials</span><span class="opt-sub" data-i18n="q3.o1s">Full service — we handle everything</span></button>
+            <button type="button" class="option-card" data-value="Labor only (I have the paint)"><span class="opt-label" data-i18n="q3.o2">Labor only</span><span class="opt-sub" data-i18n="q3.o2s">I already have the paint</span></button>
+            <button type="button" class="option-card" data-value="Not sure — need advice"><span class="opt-label" data-i18n="q3.o3">Not sure yet</span><span class="opt-sub" data-i18n="q3.o3s">We can advise on paint &amp; colors</span></button>
+          </div>
+        </fieldset>
+
+        <!-- Step 4: ZIP -->
+        <fieldset class="quiz-step" data-step="4">
+          <legend class="quiz-q" data-i18n="q4.title">What's your ZIP code?</legend>
+          <p class="quiz-hint" data-i18n="q4.hint">So we can check availability in your area</p>
+          <input class="quiz-input" id="quizZip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="19148" data-i18n-ph="q4.ph" />
+          <p class="quiz-error" id="zipError" hidden data-i18n="q4.error">Enter a valid 5-digit ZIP code</p>
+          <button type="button" class="btn btn-primary quiz-next" id="zipNext" data-i18n="q4.next">Continue →</button>
+        </fieldset>
+
+        <!-- Step 5: Contact -->
+        <fieldset class="quiz-step" data-step="5">
+          <legend class="quiz-q" data-i18n="q5.title">Last step — where should we send your quote?</legend>
+          <input class="quiz-input" id="leadName" type="text" autocomplete="name" data-i18n-ph="q5.name" placeholder="Your name" required />
+          <input class="quiz-input" id="leadPhone" type="tel" autocomplete="tel" data-i18n-ph="q5.phone" placeholder="Phone number" required />
+          <input class="quiz-input" id="leadEmail" type="email" autocomplete="email" data-i18n-ph="q5.email" placeholder="Email (optional)" />
+          <p class="quiz-error" id="contactError" hidden data-i18n="q5.error">Please enter your name and a valid phone number</p>
+          <button type="submit" class="btn btn-primary quiz-submit" id="quizSubmit" data-i18n="q5.submit">Get My Free Quote →</button>
+          <p class="quiz-micro" data-i18n="q5.micro">Free • No obligation • We respond fast</p>
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        </fieldset>
+      </form>
+
+      <!-- Success panel -->
+      <div class="quiz-success" id="quizSuccess" hidden>
+        <div class="success-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="quiz-progress"><span class="quiz-progress-fill" id="quizProgress"></span></div>
-
-        <form id="quizForm" novalidate>
-          <!-- Step 1 -->
-          <fieldset class="quiz-step active" data-step="1">
-            <legend class="quiz-q" data-i18n="q1.title">What do you need painted?</legend>
-            <div class="quiz-options" data-field="project">
-              <button type="button" class="option-card" data-value="Single room or accent wall"><span class="opt-label" data-i18n="q1.o1">Single room or accent wall</span><span class="opt-sub" data-i18n="q1.o1s">Refresh one space</span></button>
-              <button type="button" class="option-card" data-value="Multiple rooms"><span class="opt-label" data-i18n="q1.o2">Multiple rooms</span><span class="opt-sub" data-i18n="q1.o2s">Living, dining, bedrooms…</span></button>
-              <button type="button" class="option-card" data-value="Full home interior"><span class="opt-label" data-i18n="q1.o3">Full home interior</span><span class="opt-sub" data-i18n="q1.o3s">The whole place</span></button>
-              <button type="button" class="option-card" data-value="Cabinets, trim & doors"><span class="opt-label" data-i18n="q1.o4">Cabinets, trim &amp; doors</span><span class="opt-sub" data-i18n="q1.o4s">A factory-smooth finish</span></button>
-              <button type="button" class="option-card" data-value="Other / not sure"><span class="opt-label" data-i18n="q1.o5">Other / not sure</span><span class="opt-sub" data-i18n="q1.o5s">We'll figure it out together</span></button>
-            </div>
-          </fieldset>
-
-          <!-- Step 2 -->
-          <fieldset class="quiz-step" data-step="2">
-            <legend class="quiz-q" data-i18n="q2.title">How soon do you want it done?</legend>
-            <div class="quiz-options" data-field="timeline">
-              <button type="button" class="option-card option-urgent" data-value="ASAP — before the holidays (URGENT)"><span class="opt-label" data-i18n="q2.o1">This week — before the holidays</span><span class="opt-sub" data-i18n="q2.o1s">Urgent scheduling</span></button>
-              <button type="button" class="option-card" data-value="Within 2-4 weeks"><span class="opt-label" data-i18n="q2.o2">Within 2–4 weeks</span><span class="opt-sub" data-i18n="q2.o2s">Soon, but flexible</span></button>
-              <button type="button" class="option-card" data-value="Just comparing quotes"><span class="opt-label" data-i18n="q2.o3">Just comparing quotes</span><span class="opt-sub" data-i18n="q2.o3s">No rush</span></button>
-            </div>
-          </fieldset>
-
-          <!-- Step 3 -->
-          <fieldset class="quiz-step" data-step="3">
-            <legend class="quiz-q" data-i18n="q3.title">Do you already have the paint?</legend>
-            <div class="quiz-options" data-field="paint">
-              <button type="button" class="option-card" data-value="Include paint & materials (full service)"><span class="opt-label" data-i18n="q3.o1">Include paint &amp; materials</span><span class="opt-sub" data-i18n="q3.o1s">Full service — we handle everything</span></button>
-              <button type="button" class="option-card" data-value="Labor only (I have the paint)"><span class="opt-label" data-i18n="q3.o2">Labor only</span><span class="opt-sub" data-i18n="q3.o2s">I already have the paint</span></button>
-              <button type="button" class="option-card" data-value="Not sure — need advice"><span class="opt-label" data-i18n="q3.o3">Not sure yet</span><span class="opt-sub" data-i18n="q3.o3s">We can advise on paint &amp; colors</span></button>
-            </div>
-          </fieldset>
-
-          <!-- Step 4: ZIP -->
-          <fieldset class="quiz-step" data-step="4">
-            <legend class="quiz-q" data-i18n="q4.title">What's your ZIP code?</legend>
-            <p class="quiz-hint" data-i18n="q4.hint">So we can check availability in your area</p>
-            <input class="quiz-input" id="quizZip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="19148" data-i18n-ph="q4.ph" />
-            <p class="quiz-error" id="zipError" hidden data-i18n="q4.error">Enter a valid 5-digit ZIP code</p>
-            <button type="button" class="btn btn-primary quiz-next" id="zipNext" data-i18n="q4.next">Continue →</button>
-          </fieldset>
-
-          <!-- Step 5: Contact -->
-          <fieldset class="quiz-step" data-step="5">
-            <legend class="quiz-q" data-i18n="q5.title">Last step — where should we send your quote?</legend>
-            <input class="quiz-input" id="leadName" type="text" autocomplete="name" data-i18n-ph="q5.name" placeholder="Your name" required />
-            <input class="quiz-input" id="leadPhone" type="tel" autocomplete="tel" data-i18n-ph="q5.phone" placeholder="Phone number" required />
-            <input class="quiz-input" id="leadEmail" type="email" autocomplete="email" data-i18n-ph="q5.email" placeholder="Email (optional)" />
-            <p class="quiz-error" id="contactError" hidden data-i18n="q5.error">Please enter your name and a valid phone number</p>
-            <button type="submit" class="btn btn-primary quiz-submit" id="quizSubmit" data-i18n="q5.submit">Get My Free Quote →</button>
-            <p class="quiz-micro" data-i18n="q5.micro">Free • No obligation • We respond fast</p>
-            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          </fieldset>
-        </form>
-
-        <!-- Success panel -->
-        <div class="quiz-success" id="quizSuccess" hidden>
-          <div class="success-check" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 data-i18n="done.title">You're all set!</h3>
-          <p data-i18n="done.msg">We received your request and will reach out shortly. Want it even faster?</p>
-          <div class="success-actions">
-            <a class="btn btn-primary" href="tel:+12156785165" data-track="call_click" data-i18n="done.call">Call (215) 678-5165</a>
-            <a class="btn btn-ghost" href="sms:+12156785165" data-track="sms_click" data-i18n="done.text">Text us</a>
-          </div>
+        <h3 data-i18n="done.title">You're all set!</h3>
+        <p data-i18n="done.msg">We received your request and will reach out shortly. Want it even faster?</p>
+        <div class="success-actions">
+          <a class="btn btn-primary" href="tel:+12156785165" data-track="call_click" data-i18n="done.call">Call (215) 678-5165</a>
+          <a class="btn btn-ghost" href="sms:+12156785165" data-track="sms_click" data-i18n="done.text">Text us</a>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ===== Trust bar ===== -->
-  <section class="trust">
-    <div class="container trust-grid">
-      <div class="trust-item"><strong data-i18n="t1">Licensed &amp; Insured</strong><span data-i18n="t1s">Ask for proof anytime</span></div>
-      <div class="trust-item"><strong data-i18n="t2">Free Color Consultation</strong><span data-i18n="t2s">With every project</span></div>
-      <div class="trust-item"><strong data-i18n="t3">Fast Scheduling</strong><span data-i18n="t3s">Holiday slots available</span></div>
-      <div class="trust-item"><strong data-i18n="t4">Clean Work Sites</strong><span data-i18n="t4s">Floors &amp; furniture protected</span></div>
-    </div>
-  </section>
+    <p class="trust-line" data-i18n="in.trust">Licensed &amp; insured · Free · No obligation</p>
+  </main>
 
-  <!-- ===== Photos ===== -->
-  <section class="section lp-photos-sec">
-    <div class="container">
-      <h2 class="section-title" data-i18n="ph.title">Real work, real homes</h2>
-      <p class="section-sub" data-i18n="ph.sub">Recent interior projects by our crews</p>
-      <div class="lp-photos">
-        <img src="../assets/gallery/other-02.jpeg" alt="Bedroom with freshly painted striped accent wall" width="1200" height="1500" loading="lazy" decoding="async" />
-        <img src="../assets/gallery/other-01.jpeg" alt="Living room with painted TV wall, fireplace and shelves" width="1200" height="757" loading="lazy" decoding="async" />
-        <img src="../assets/gallery/basement-03.jpeg" alt="Bright finished suite with fresh paint and white doors" width="1200" height="900" loading="lazy" decoding="async" />
-        <img src="../assets/gallery/bath-01.jpeg" alt="Bathroom with dark painted vanity and stone accent wall" width="1200" height="1600" loading="lazy" decoding="async" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== How it works ===== -->
-  <section class="section how">
-    <div class="container">
-      <h2 class="section-title" data-i18n="how.title">How it works</h2>
-      <div class="how-grid">
-        <div class="how-item"><span class="how-n">1</span><h3 data-i18n="how1">Answer 4 quick questions</h3><p data-i18n="how1s">30 seconds — right from your phone.</p></div>
-        <div class="how-item"><span class="how-n">2</span><h3 data-i18n="how2">We call with your quote</h3><p data-i18n="how2s">A real price, in writing — no surprises.</p></div>
-        <div class="how-item"><span class="how-n">3</span><h3 data-i18n="how3">We paint, you relax</h3><p data-i18n="how3s">Floors covered, furniture moved, spotless cleanup.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Promise ===== -->
-  <section class="section promise">
-    <div class="container">
-      <h2 class="section-title" data-i18n="pr.title">Our promise to you</h2>
-      <div class="promise-grid">
-        <div class="promise-item"><h3 data-i18n="pr1">Written quote, honored</h3><p data-i18n="pr1s">The price we write is the price you pay.</p></div>
-        <div class="promise-item"><h3 data-i18n="pr2">A schedule we keep</h3><p data-i18n="pr2s">Start and finish dates set before we begin.</p></div>
-        <div class="promise-item"><h3 data-i18n="pr3">Walkthrough guarantee</h3><p data-i18n="pr3s">We're not done until you approve the finish.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Final CTA ===== -->
-  <section class="final-cta">
-    <div class="container">
-      <h2 data-i18n="fc.title">Get your home holiday-ready.</h2>
-      <p data-i18n="fc.sub">30 seconds. Free. No obligation.</p>
-      <a href="#quizCard" class="btn btn-light" data-track="estimate_cta_click" data-i18n="fc.btn">Get My Free Quote →</a>
-    </div>
-  </section>
-
-  <footer class="footer-slim">
-    <div class="container footer-inner">
-      <img src="../assets/logo-white.png" alt="Vertex Home Remodeling" class="footer-logo" />
-      <p><a href="tel:+12156785165">(215) 678-5165</a> · <a href="mailto:contact@vertexhrg.com">contact@vertexhrg.com</a></p>
-      <p class="footer-fine" data-i18n="ft.fine">Licensed &amp; insured · Vertex Home Remodeling</p>
-    </div>
+  <footer class="foot">
+    Vertex Home Remodeling · <a href="tel:+12156785165">(215) 678-5165</a> · <a href="mailto:contact@vertexhrg.com">contact@vertexhrg.com</a>
   </footer>
-
-  <!-- ===== Mobile sticky bar ===== -->
-  <div class="mobile-bar">
-    <a href="tel:+12156785165" class="mobile-bar-btn call" data-track="call_click" data-i18n="mb.call">Call Now</a>
-    <a href="#quizCard" class="mobile-bar-btn quote" data-track="estimate_cta_click" data-i18n="mb.quote">Free Quote</a>
-  </div>
 
   <script src="quiz.js"></script>
 </body>
