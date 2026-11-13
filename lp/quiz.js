@@ -11,7 +11,8 @@
   /* ---------- i18n ---------- */
   var I18N = {
     en: {
-      'lp.eyebrow': 'Interior Painting — Greater Philadelphia & NJ',
+      'lp.eyebrow': 'Interior Painting — {area}',
+      'lp.eyebrow.gen': 'Interior Painting — Free Estimates',
       'lp.title': 'Fast, clean & affordable interior painting.',
       'lp.sub': 'Get your free estimate in 30 seconds — free color consultation included.',
       'lp.point1': 'Licensed & insured painters',
@@ -33,7 +34,7 @@
       'q3.o2': 'Labor only', 'q3.o2s': 'I already have the paint',
       'q3.o3': 'Not sure yet', 'q3.o3s': 'We can advise on paint & colors',
       'q4.title': "What's your ZIP code?",
-      'q4.hint': 'We serve Greater Philadelphia & New Jersey',
+      'q4.hint': 'So we can check availability in your area',
       'q4.ph': '19148', 'q4.error': 'Enter a valid 5-digit ZIP code',
       'q4.next': 'Continue →',
       'q5.title': 'Last step — where should we send your quote?',
@@ -44,7 +45,7 @@
       'done.title': "You're all set, {name}!",
       'done.msg': 'We received your request and will reach out shortly. Want it even faster?',
       'done.call': 'Call (215) 678-5165', 'done.text': 'Text us',
-      't1': 'Licensed & Insured', 't1s': 'PA, NJ & DE',
+      't1': 'Licensed & Insured', 't1s': 'Ask for proof anytime',
       't2': 'Free Color Consultation', 't2s': 'With every project',
       't3': 'Fast Scheduling', 't3s': 'Holiday slots available',
       't4': 'Clean Work Sites', 't4s': 'Floors & furniture protected',
@@ -61,12 +62,14 @@
       'fc.title': 'Get your home holiday-ready.',
       'fc.sub': '30 seconds. Free. No obligation.',
       'fc.btn': 'Get My Free Quote →',
-      'ft.fine': 'Licensed & insured · Serving Greater Philadelphia, NJ & DE',
+      'ft.fine': 'Licensed & insured · Serving {area}',
+      'ft.fine.gen': 'Licensed & insured · Vertex Home Remodeling',
       'mb.call': 'Call Now', 'mb.quote': 'Free Quote',
       'err.submit': 'Something went wrong — please call or text us at (215) 678-5165'
     },
     es: {
-      'lp.eyebrow': 'Pintura de Interiores — Gran Filadelfia y NJ',
+      'lp.eyebrow': 'Pintura de Interiores — {area}',
+      'lp.eyebrow.gen': 'Pintura de Interiores — Estimados Gratis',
       'lp.title': 'Pintura de interiores rápida, limpia y a buen precio.',
       'lp.sub': 'Obtenga su estimado gratis en 30 segundos — consulta de color gratis incluida.',
       'lp.point1': 'Pintores con licencia y seguro',
@@ -88,7 +91,7 @@
       'q3.o2': 'Solo mano de obra', 'q3.o2s': 'Ya tengo la pintura',
       'q3.o3': 'Aún no sé', 'q3.o3s': 'Le asesoramos en pintura y colores',
       'q4.title': '¿Cuál es su código postal?',
-      'q4.hint': 'Servimos el Gran Filadelfia y Nueva Jersey',
+      'q4.hint': 'Para verificar disponibilidad en su zona',
       'q4.ph': '19148', 'q4.error': 'Ingrese un código postal válido de 5 dígitos',
       'q4.next': 'Continuar →',
       'q5.title': 'Último paso — ¿a dónde enviamos su estimado?',
@@ -99,7 +102,7 @@
       'done.title': '¡Listo, {name}!',
       'done.msg': 'Recibimos su solicitud y le contactaremos pronto. ¿Lo quiere aún más rápido?',
       'done.call': 'Llamar (215) 678-5165', 'done.text': 'Enviar mensaje',
-      't1': 'Licencia y Seguro', 't1s': 'PA, NJ y DE',
+      't1': 'Licencia y Seguro', 't1s': 'Pida comprobante cuando quiera',
       't2': 'Consulta de Color Gratis', 't2s': 'Con cada proyecto',
       't3': 'Agenda Rápida', 't3s': 'Horarios antes de las fiestas',
       't4': 'Trabajo Limpio', 't4s': 'Pisos y muebles protegidos',
@@ -116,23 +119,32 @@
       'fc.title': 'Deje su casa lista para las fiestas.',
       'fc.sub': '30 segundos. Gratis. Sin compromiso.',
       'fc.btn': 'Obtener Mi Estimado Gratis →',
-      'ft.fine': 'Licencia y seguro · Sirviendo Gran Filadelfia, NJ y DE',
+      'ft.fine': 'Licencia y seguro · Sirviendo {area}',
+      'ft.fine.gen': 'Licencia y seguro · Vertex Home Remodeling',
       'mb.call': 'Llamar Ahora', 'mb.quote': 'Estimado Gratis',
       'err.submit': 'Algo salió mal — llámenos o envíe un mensaje al (215) 678-5165'
     }
   };
 
-  /* ---------- Language ---------- */
+  /* ---------- Language & region ---------- */
+  var params = new URLSearchParams(location.search);
+  var AREA = params.get('area');
+  var UTM = {};
+  params.forEach(function (v, k) { if (k.indexOf('utm_') === 0) UTM[k] = v; });
+
   function getLang() {
-    var p = new URLSearchParams(location.search).get('lang');
+    var p = params.get('lang');
     if (p === 'es' || p === 'en') return p;
     return (navigator.language || 'en').slice(0, 2) === 'es' ? 'es' : 'en';
   }
   var lang = getLang();
 
   function t(key, vars) {
-    var s = (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
-    if (vars) for (var k in vars) s = s.replace('{' + k + '}', vars[k]);
+    if (!AREA && I18N[lang] && I18N[lang][key + '.gen']) key = key + '.gen';
+    var s = (I18N[lang] && I18N[lang][key]) || I18N.en[key] || I18N.en[key + '.gen'] || key;
+    var all = { area: AREA };
+    if (vars) for (var k in vars) all[k] = vars[k];
+    for (var k2 in all) s = s.replace('{' + k2 + '}', all[k2]);
     return s;
   }
 
@@ -269,9 +281,11 @@
       timeline: answers.timeline,
       paint: answers.paint,
       language: lang,
+      area: AREA || '(not set)',
       source: 'painting-quiz-lp',
       _subject: (urgent ? 'URGENT — ' : '') + 'Painting quote — ' + name + ' — ' + zipInput.value.trim()
     };
+    for (var u in UTM) payload[u] = UTM[u];
 
     fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
