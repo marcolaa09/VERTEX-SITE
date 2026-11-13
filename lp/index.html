@@ -301,11 +301,14 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
 }
 .lp-photos img {
-  width: 100%; aspect-ratio: 1/1;
+  width: 100%; height: 260px;
   object-fit: cover;
   border-radius: var(--radius-lg);
   filter: saturate(1.06) contrast(1.03);
   transition: transform .3s ease;
+}
+@supports (aspect-ratio: 1/1) {
+  .lp-photos img { height: auto; aspect-ratio: 4/5; }
 }
 .lp-photos img:hover { transform: scale(1.03); }
 
@@ -383,6 +386,10 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -
   body { padding-bottom: 0; }
   .footer-slim { padding-bottom: calc(2rem + 90px); }
   .lp-photos { grid-template-columns: repeat(2, 1fr); }
+  .lp-photos img { height: 200px; }
+  @supports (aspect-ratio: 1/1) {
+    .lp-photos img { height: auto; }
+  }
   .quiz-input { font-size: 16px; } /* evita zoom no iOS */
   #quizZip { font-size: 1.2rem; }
   .header-call-num { display: none; }
@@ -537,10 +544,10 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -
       <h2 class="section-title" data-i18n="ph.title">Real work, real homes</h2>
       <p class="section-sub" data-i18n="ph.sub">Recent interior projects by our crews</p>
       <div class="lp-photos">
-        <img src="../assets/gallery/other-02.jpeg" alt="Bedroom with freshly painted striped accent wall" width="1200" height="1200" loading="lazy" decoding="async" />
-        <img src="../assets/gallery/other-01.jpeg" alt="Living room with painted TV wall, fireplace and shelves" width="1200" height="1200" loading="lazy" decoding="async" />
-        <img src="../assets/gallery/basement-03.jpeg" alt="Bright finished suite with fresh paint and white doors" width="1200" height="1200" loading="lazy" decoding="async" />
-        <img src="../assets/gallery/bath-01.jpeg" alt="Bathroom with dark painted vanity and stone accent wall" width="1200" height="1200" loading="lazy" decoding="async" />
+        <img src="../assets/gallery/other-02.jpeg" alt="Bedroom with freshly painted striped accent wall" width="1200" height="1500" loading="lazy" decoding="async" />
+        <img src="../assets/gallery/other-01.jpeg" alt="Living room with painted TV wall, fireplace and shelves" width="1200" height="757" loading="lazy" decoding="async" />
+        <img src="../assets/gallery/basement-03.jpeg" alt="Bright finished suite with fresh paint and white doors" width="1200" height="900" loading="lazy" decoding="async" />
+        <img src="../assets/gallery/bath-01.jpeg" alt="Bathroom with dark painted vanity and stone accent wall" width="1200" height="1600" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
