@@ -6,7 +6,22 @@
   'use strict';
 
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbggkvln';
+  var META_PIXEL_ID = ''; // ← cole o ID do pixel aqui (ex: '1234567890123456')
   var TOTAL_STEPS = 5;
+
+  /* ---------- Meta Pixel (carrega só se o ID estiver definido) ---------- */
+  if (META_PIXEL_ID) {
+    /* eslint-disable */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    /* eslint-enable */
+    window.fbq('init', META_PIXEL_ID);
+    window.fbq('track', 'PageView');
+  }
+  function trackMeta(event) { if (window.fbq) window.fbq('track', event); }
 
   /* ---------- i18n ---------- */
   var I18N = {
@@ -180,7 +195,11 @@
     window.dataLayer.push(payload);
   }
   document.querySelectorAll('[data-track]').forEach(function (el) {
-    el.addEventListener('click', function () { track(el.getAttribute('data-track')); });
+    el.addEventListener('click', function () {
+      var ev = el.getAttribute('data-track');
+      track(ev);
+      if (ev === 'call_click' || ev === 'sms_click') trackMeta('Contact');
+    });
   });
 
   /* ---------- Quiz state ---------- */
@@ -294,6 +313,7 @@
     }).then(function (res) {
       if (res.ok) {
         track('lead_submit', { service: 'painting', urgent: urgent });
+        trackMeta('Lead');
         form.hidden = true;
         document.querySelector('.quiz-head').hidden = true;
         document.querySelector('.quiz-progress').hidden = true;
