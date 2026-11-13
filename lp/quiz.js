@@ -6,7 +6,7 @@
   'use strict';
 
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbggkvln';
-  var META_PIXEL_ID = ''; // ← cole o ID do pixel aqui (ex: '1234567890123456')
+  var META_PIXEL_ID = '5075501212721113';
   var TOTAL_STEPS = 5;
 
   /* ---------- Meta Pixel (carrega só se o ID estiver definido) ---------- */
